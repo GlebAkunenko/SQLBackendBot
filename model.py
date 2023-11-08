@@ -1,16 +1,15 @@
-import mysql.connector
-import config
+import MySQLdb
 
-# Устанавливаем соединение с базой данных
-conn = mysql.connector.connect(
-    host=config.server_address,  # Укажите адрес хоста базы данных
-    user='user',  # Укажите имя пользователя для подключения к базе данных
-    password='0000',  # Укажите пароль пользователя
-    database='test'  # Укажите имя базы данных
-)
+conn = MySQLdb.connect(
+      host="rc1b-jcgbdwdg2bg0a6vc.mdb.yandexcloud.net",
+      port=3306,
+      db="db",
+      user="user",
+      passwd="12121212",
+      ssl={'ca': 'root.crt'})
 
-# Создаем объект cursor для выполнения SQL-запросов
 cursor = conn.cursor()
+
 
 
 def do_query(query: str) -> str:

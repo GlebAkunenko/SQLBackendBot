@@ -25,10 +25,9 @@ async def handler(message: Message):
 
 
 def make_request(query: str) -> str:
-	try:
-		data = do_query(query)
-	except Exception as e:
-		return str(e)
+	data = do_query(query)
+	if isinstance(data, str):
+		return data
 	if len(data) == 0:
 		return "No data"
 	pt = PrettyTable([str(i) for i in range(len(data[0]))])

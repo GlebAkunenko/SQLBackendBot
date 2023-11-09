@@ -8,12 +8,16 @@ conn = MySQLdb.connect(
       passwd="12121212",
       ssl={'ca': 'root.crt'})
 
-cursor = conn.cursor()
-
 
 
 def do_query(query: str) -> str:
-	cursor.execute(query)
+	cursor = conn.cursor()
+	try:
+		cursor.execute(query)
+		conn.commit()
+	except Exception as e:
+		conn.rollback()
+		return str(e)
 	results = cursor.fetchall()
 	return results
 

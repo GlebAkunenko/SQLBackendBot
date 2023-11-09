@@ -27,8 +27,8 @@ async def handler(message: Message):
 def make_request(query: str) -> str:
 	try:
 		data = do_query(query)
-	except:
-		return "Invalid SQL query"
+	except Exception as e:
+		return str(e)
 	if len(data) == 0:
 		return "No data"
 	pt = PrettyTable([str(i) for i in range(len(data[0]))])
